@@ -1,0 +1,108 @@
+
+<div ng-controller="TodoListController as todoList">
+  <div class="row">
+    <div class="col-md-12">/</div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">/</div>
+  </div>
+
+<div class="col-sm-1">
+
+</div>
+
+<div class="col-sm-7">
+  <h2 align="center" class ="col-sm-7 container fixed-search" style='background-color: white; height:60px; margin-top: 11px; padding-top: 15px'>
+    Course Code
+    <input ng-model= "search.id" type="text" ng-model="test" class = "input-size" placeholder="Search">
+  </h2>
+    <div class="container col-sm-12" style="margin-top: 80px;" >
+      <div class="list-group" ng-repeat="course in todoList.course | objFilter:search">
+        <li class="list-group-item">
+          <a href="" class="list-group-item-heading open-AddBookDialog" data-toggle="modal" data-target="#Description" ng-click="todoList.courseDes(course)">{{course.id}} {{course.name.en}} <br>{{course.name.th}}</br></a>
+          <p class="list-group-item-text">Credit : Lab({{course.credit.lab}}), Lecture({{course.credit.lecture}}), Total({{course.credit.total}})</p>
+          <a href="" class="btn btn-md btn-block btn-info" ng-click="todoList.enroll(course)">Add</a>
+        </li>
+      </div>
+    </div>
+</div>
+
+<div class="col-sm-3">
+    <div class="container fixed-side-right">
+      <h2 align = "center">
+        Enrolled
+        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#JSON">JSON</button>
+      </h2>
+      <div class="list-group" ng-repeat="course in enroll">
+        <li class="list-group-item">
+          <a href="" class="list-group-item-heading open-AddBookDialog" data-toggle="modal" data-target="#Description" ng-click="todoList.courseDes(course)">{{course.id}} {{course.name.en}}</a>
+          <a href="" class="btn btn-md btn-block btn-danger" data-toggle="modal" data-target="#Drop" ng-click="todoList.goingToDrop(course)">Drop</a>
+        </li> 
+      </div>
+    </div>
+</div>
+
+<div class="col-sm-1">
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="Description" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Course Description</h4>
+      </div>
+      <div class="modal-body">
+        <p>{{courseDes.description.en}}</p>
+        <p>{{courseDes.description.th}}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="JSON" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Export JSON</h4>
+      </div>
+      <div class="modal-body">
+        {{enroll}}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="Drop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Drop {{goingToDrop.id}} {{goingToDrop.name.en}}</h4>
+      </div>
+      <div class="modal-body">
+        <p>
+          Course: {{goingToDrop.id}} {{goingToDrop.name.en}}
+        </p>
+        <p>
+          Description: {{goingToDrop.description.en}}
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="todoList.drop()">DROP</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>

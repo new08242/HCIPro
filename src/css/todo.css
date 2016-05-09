@@ -1,0 +1,40 @@
+.done-true {
+  text-decoration: line-through;
+  color: grey;
+}
+
+.fixed-side-right {
+  position: fixed;
+  background-color: #37DC81;
+  width: 25%;
+}
+
+.fixed-search {
+  position: fixed;
+  z-index: 1000
+}
+
+.input-size {
+    font-size:24px;
+}
+
+/* enable absolute positioning */
+.inner-addon {
+  position: relative;
+}
+
+/* style glyph */
+.inner-addon .glyphicon {
+  position: absolute;
+  padding: 10px;
+  pointer-events: none;
+}
+
+/* align glyph */
+.left-addon .glyphicon  { left:  0px;}
+.right-addon .glyphicon { right: 0px;}
+
+/* add padding  */
+.left-addon input  { padding-left:  30px; }
+.right-addon input { padding-right: 30px; }
+}

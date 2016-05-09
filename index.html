@@ -1,0 +1,51 @@
+<!doctype html>
+<html ng-app="todoApp">
+  <head>
+    <!-- CSS file -->
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+    <!-- <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css"> -->
+    <!-- <link rel="stylesheet" href="node_modules/angular-ui-bootstrap/dist/ui-bootstrap-csp.css"> -->
+    <link rel="stylesheet" href="src/css/todo.css">
+    <link rel="stylesheet" href="src/css/home.css">
+
+  </head>
+  <body>
+    <!-- Import scripts -->
+    <script type="text/javascript" src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="node_modules/angular-ui-bootstrap/dist/ui-bootstrap.js"></script>
+
+    <!-- App controller -->
+    <script src="src/js/controller/todo.js"></script>
+    <script src="src/js/route/route.js"></script>
+
+    <!-- some navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#"></a>
+    </div>
+    <div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav pull-xs-left">
+          <img src="http://www.ku.ac.th/web2012/resources/template2/ui/images/logo.png" id="logo" height="50" width="250"/>
+        </ul>
+        <ul class="nav navbar-nav">
+          <li role="presentation"><a ui-sref="home">Profile</a></li>
+          <li role="presentation"><a ui-sref="enroll">Enroll</a></li>
+        </ul>
+      </div>
+    </div>
+    </div>
+    </nav>
+  
+    <div ui-view></div>
+  </body>
+</html>
