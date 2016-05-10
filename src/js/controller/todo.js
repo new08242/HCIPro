@@ -1,6 +1,29 @@
 var myApp = angular.module('todoApp', ['ui.router']);
-  myApp.controller('TodoListController', ['$http', '$scope', function ($http, $scope, $rootscpoe) {
-    $scope.enroll = []
+  myApp.controller('TodoListController', ['$http', '$scope', '$rootScope', function ($http, $scope, $rootScope) {
+
+    $rootScope.enroll = undefined
+    if($rootScope.enroll == undefined){
+      $http.get('http://52.37.98.127:3000/v1/5610546753?pin=1234').success(function(data){
+        if(data[$rootScope.currentUserId] == undefined){
+          $rootScope.enroll = []
+        }
+        else{
+          $rootScope.enroll = data[$rootScope.currentUserId]
+        }
+      });
+    }
+
+    $rootScope.user = undefined
+    if($rootScope.user == undefined){
+      $http.get('http://52.37.98.127:3000/v1/5610546753?pin=1234').success(function(data){
+        if(data[$rootScope.currentUserId] == undefined){
+          $rootScope.user = {}
+        }
+        else{
+          $rootScope.user = {[$rootScope.currentUserId] : data[$rootScope.currentUserId]}
+        }
+      });
+    }
 
     var todoList = this
     todoList.todos = [
@@ -41,28 +64,40 @@ var myApp = angular.module('todoApp', ['ui.router']);
 
     todoList.enroll = function (course) {
       var isAdd = true;
-      for(i = 0; i<$scope.enroll.length; i++) {
-        if($scope.enroll[i] == course){
+      for(i = 0; i<$rootScope.enroll.length; i++) {
+        if($rootScope.enroll[i] == course){
           isAdd = false;
         }
       }
       if(isAdd){
-        $scope.enroll.push(course)
+        $rootScope.enroll.push(course)
+        var temp = {[$rootScope.currentUserId] : $rootScope.enroll}
+        $rootScope.user = temp
+        $http.post('http://52.37.98.127:3000/v1/5610546753?pin=1234',$rootScope.user).success(function(data){
+          
+        });
       }
     }
 
     todoList.drop = function () {
-      var index = $scope.enroll.indexOf($scope.goingToDrop)
-      $scope.enroll.splice(index,1)
+      var index = $rootScope.enroll.indexOf($scope.goingToDrop)
+      $rootScope.enroll.splice(index,1)
+      var temp = {[$rootScope.currentUserId] : $rootScope.enroll}
+      console.log(temp)
+      $rootScope.user = temp
+      $http.post('http://52.37.98.127:3000/v1/5610546753?pin=1234',$rootScope.user).success(function(data){
+          
+      });
     }
 
     todoList.goingToDrop = function (course) {
       $scope.goingToDrop = course
     }
 
-    todoList.toJSON = function () {
-      $scope.json = $scope.enroll
+    todoList.Login = function (currentUserId) {
+      $rootScope.currentUserId = currentUserId
     }
+
 }]);
 
 myApp.filter('objFilter', function($filter){

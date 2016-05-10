@@ -32,14 +32,17 @@
       </button>
       <a class="navbar-brand" href="#"></a>
     </div>
-    <div>
+    <div class="row">
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav pull-xs-left">
           <img src="http://www.ku.ac.th/web2012/resources/template2/ui/images/logo.png" id="logo" height="50" width="250"/>
         </ul>
-        <ul class="nav navbar-nav">
-          <li role="presentation"><a ui-sref="home">Profile</a></li>
+        <ul class="col-sm-6 nav navbar-nav">
+          <li role="presentation"><a ui-sref="home">Login</a></li>
           <li role="presentation"><a ui-sref="enroll">Enroll</a></li>
+        </ul>
+        <ul class="col-sm-2 nav navbar-nav">
+          <li role="presentation"><a align="center" style="right :-64%">{{currentUserId}}</a></li>
         </ul>
       </div>
     </div>
